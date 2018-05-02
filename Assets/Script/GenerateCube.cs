@@ -64,8 +64,20 @@ public class GenerateCube : MonoBehaviour {
 	public int selectColor(int i, int j){
 		int r = UnityEngine.Random.Range(0, 4);
 		//GameObject gb;
+		if(j > 1){
+			if (r == int.Parse (cube [i] [j - 1].tag)) {
+				if (r == int.Parse (cube [i] [j - 2].tag)) {
+					r = selectColor (i, j);
+				}
+			}
+		}
+
 		if(i > 1){
-			
+			if (r == int.Parse (cube [i-1] [j].tag)) {
+				if (r == int.Parse (cube [i-2] [j].tag)) {
+					r = selectColor (i, j);
+				}
+			}
 		}
 		return r;
 	}
