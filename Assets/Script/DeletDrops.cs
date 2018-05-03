@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class DeletDrops : MonoBehaviour {
 	GenerateCube gc;
+	AddDrops ad;
 	public List<GameObject> column = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () {
 		gc = GetComponent<GenerateCube>();
+		ad = GetComponent<AddDrops>();
 	}
 	
 	// Update is called once per frame
@@ -28,6 +30,7 @@ public class DeletDrops : MonoBehaviour {
 					for (int k = 0; k < chain; k++) {
 						Destroy (gc.cube [i] [j - k]);
 						gc.cube [i].RemoveAt (j - k);
+						//ad.generateAddDrops ();
 					}
 				}
 				chain = 1;
@@ -36,6 +39,7 @@ public class DeletDrops : MonoBehaviour {
 					for (int k = 1; k < chain + 1; k++) {
 						Destroy (gc.cube [i] [j - k]);
 						gc.cube [i].RemoveAt (j - k);
+						//ad.generateAddDrops ();
 					}
 				}
 				chain = 1;
@@ -57,6 +61,7 @@ public class DeletDrops : MonoBehaviour {
 						for (int k = 0; k < chain; k++) {
 							Destroy (gc.cube [i - k] [j]);
 							gc.cube [i - k].RemoveAt (j);
+							//ad.generateAddDrops ();
 							Debug.Log ("delete!");
 							deleteRow(j);
 						}
@@ -67,6 +72,7 @@ public class DeletDrops : MonoBehaviour {
 						for (int k = 1; k < chain + 1; k++) {
 							Destroy (gc.cube [i - k] [j]);
 							gc.cube [i - k].RemoveAt (j);
+							//ad.generateAddDrops ();
 							Debug.Log ("delete!");
 							deleteRow(j);
 						}
@@ -78,6 +84,7 @@ public class DeletDrops : MonoBehaviour {
 					for (int k = 1; k < chain + 1; k++) {
 						Destroy (gc.cube [i - k] [j]);
 						gc.cube [i - k].RemoveAt (j);
+						//ad.generateAddDrops ();
 						Debug.Log ("delete!");
 						deleteRow(j);
 					}

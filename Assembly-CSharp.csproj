@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\AddDrops.cs" />
      <Compile Include="Assets\Script\ChangeCube.cs" />
      <Compile Include="Assets\Script\DeletDrops.cs" />
      <Compile Include="Assets\Script\GenerateCube.cs" />

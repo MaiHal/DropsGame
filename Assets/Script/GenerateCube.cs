@@ -20,6 +20,8 @@ public class GenerateCube : MonoBehaviour {
 	public List<GameObject> lineI = new List<GameObject>();
 	public List<GameObject> lineJ = new List<GameObject>();
 
+	AddDrops ad;
+
 	// Use this for initialization
 	void Start () {
 		cube[0] = lineA;
@@ -37,20 +39,7 @@ public class GenerateCube : MonoBehaviour {
 		for(int i = 0; i < 10; i++){
 			for(int j = 0; j < 10; j++){
 				int r = selectColor(i, j);
-				switch(r){
-					case 0:
-					cube[i].Add(blue);
-						break;
-					case 1:
-					cube[i].Add(red);
-						break;
-					case 2:
-					cube[i].Add(yellow);
-						break;
-					case 3:
-					cube[i].Add(green);
-						break;
-				}
+				strageDrops (r, i);
 				cube[i][j] = Instantiate (cube[i][j], new Vector3( 4.5f - i * 1.0f, 0 + j * 1.0f, 0),  Quaternion.identity) as GameObject;
 			}	
 		}
@@ -58,12 +47,11 @@ public class GenerateCube : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
 	public int selectColor(int i, int j){
 		int r = UnityEngine.Random.Range(0, 4);
-		//GameObject gb;
+
 		if(j > 1){
 			if (r == int.Parse (cube [i] [j - 1].tag)) {
 				if (r == int.Parse (cube [i] [j - 2].tag)) {
@@ -80,5 +68,22 @@ public class GenerateCube : MonoBehaviour {
 			}
 		}
 		return r;
+	}
+
+	public void strageDrops(int r, int i){
+		switch(r){
+			case 0:
+				cube[i].Add(blue);
+				break;
+			case 1:
+				cube[i].Add(red);
+				break;
+			case 2:
+				cube[i].Add(yellow);
+				break;
+			case 3:
+				cube[i].Add(green);
+				break;
+		}
 	}
 }
