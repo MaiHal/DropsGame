@@ -72,5 +72,7 @@ public class ChangeCube : MonoBehaviour {
 
 		dd.deleteColumn(i);
 		dd.deleteColumn(k);
+		dd.deleteRow(j);
+		dd.deleteRow(l);
 	}
 }
