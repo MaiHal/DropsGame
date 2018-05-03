@@ -5,9 +5,13 @@ using UnityEngine;
 public class ChangeCube : MonoBehaviour {
 	public bool order = false;
 	public GameObject[] selectObj = new GameObject[2];
+	DeletDrops dd;
+	GenerateCube gc;
 
 	// Use this for initialization
 	void Start () {
+		dd = GetComponent<DeletDrops>();
+		gc = GetComponent<GenerateCube>();
 	}
 	
 	// Update is called once per frame
@@ -41,7 +45,6 @@ public class ChangeCube : MonoBehaviour {
 						selectObj [1] = clickObj;
 						order = false;
 						changePosition ();
-						Debug.Log ("2つめ");
 					}
 				}
 			}
@@ -49,13 +52,25 @@ public class ChangeCube : MonoBehaviour {
 			//1つめの選択
 			selectObj [0] = clickObj;
 			order = true;
-			Debug.Log ("1つめ");
 		}
 	}
 
 	public void changePosition(){
-		Vector3 tmp = selectObj[0].transform.position;
+		//リスト入れ替え
+		int i = (int)(4.5f - selectObj[0].transform.position.x);
+		int j = (int)Mathf.Round(4.5f + selectObj [0].transform.position.y);
+		int k = (int)(4.5f - selectObj[1].transform.position.x);
+		int l = (int)Mathf.Round(4.5f + selectObj [1].transform.position.y);
+		GameObject tmpDrop = gc.cube[i][j];
+		gc.cube [i] [j] = gc.cube [k] [l];
+		gc.cube [k] [l] = tmpDrop;
+
+		//オブジェクトの座標入れ替え
+		Vector3 tmpPos = selectObj[0].transform.position;
 		selectObj[0].transform.position = selectObj[1].transform.position;
-		selectObj [1].transform.position = tmp;
+		selectObj [1].transform.position = tmpPos;
+
+		dd.deleteColumn(i);
+		dd.deleteColumn(k);
 	}
 }

@@ -51,7 +51,7 @@ public class GenerateCube : MonoBehaviour {
 					cube[i].Add(green);
 						break;
 				}
-				Instantiate (cube[i][j], new Vector3( 4.5f - i * 1.0f, 0 + j * 1.0f, 0),  Quaternion.identity);
+				cube[i][j] = Instantiate (cube[i][j], new Vector3( 4.5f - i * 1.0f, 0 + j * 1.0f, 0),  Quaternion.identity) as GameObject;
 			}	
 		}
 	}
