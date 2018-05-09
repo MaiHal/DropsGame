@@ -8,7 +8,7 @@ public class ScoreBar : MonoBehaviour {
 	ScoreScript ss;
 	Vector3 point;
 	//スコアにかける重み
-	float weight = 0.1f;
+	float weight = 0.001f;
 
 	// Use this for initialization
 	void Start () {
