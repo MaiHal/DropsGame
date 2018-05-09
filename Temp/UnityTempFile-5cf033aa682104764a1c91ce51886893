@@ -170,6 +170,7 @@
 'Assets/Script/ChangeCube.cs'
 'Assets/Script/DeletDrops.cs'
 'Assets/Script/GenerateCube.cs'
+'Assets/Script/ScoreScript.cs'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Xml.Linq.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/UnityScript.dll'
