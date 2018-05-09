@@ -8,7 +8,7 @@ public class ScoreBar : MonoBehaviour {
 	ScoreScript ss;
 	Vector3 point;
 	//スコアにかける重み
-	float weight = 0.001f;
+	float weight = 0.1f;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +20,12 @@ public class ScoreBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		point.x = -6.0f - ss.score * weight;
+		float tmp = -6.0f - ss.score * weight;
+		if (-11.3f <= tmp) {
+			point.x = -6.0f - ss.score * weight;
+		} else {
+			point.x = -11.3f;
+		}
 		//-6 ~ -11.3
 		scoreBar.SetPosition(1, point);
 	}
