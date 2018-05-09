@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class ScoreBar : MonoBehaviour {
 	LineRenderer scoreBar;
+	GameObject gameManager;
+	ScoreScript ss;
+	Vector3 point;
+	//スコアにかける重み
+	float weight = 0.001f;
+
 	// Use this for initialization
 	void Start () {
+		gameManager = GameObject.Find ("GameManager");
+		ss = gameManager.GetComponent<ScoreScript>();
 		scoreBar = GameObject.Find("Score").GetComponent<LineRenderer>();
-		float x = -10.0f;
-		Vector3 point = new Vector3(x, 3.2f, 0);
-		//-6 ~ -11.3
-		scoreBar.SetPosition(1, point);
+		point = new Vector3(-6.0f, 3.2f, 0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		point.x = -6.0f - ss.score * weight;
+		//-6 ~ -11.3
+		scoreBar.SetPosition(1, point);
 	}
 }
