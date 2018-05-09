@@ -9,7 +9,6 @@ public class ScoreScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		score = 0;
-		countScore ();
 	}
 	
 	// Update is called once per frame
@@ -17,7 +16,7 @@ public class ScoreScript : MonoBehaviour {
 		scoreText.text = score.ToString();
 	}
 
-	void countScore(){
-		score = 10;
+	public void countScore(int i){
+		score += 10 * i * i;
 	}
 }

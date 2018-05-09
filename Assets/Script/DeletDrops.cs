@@ -5,12 +5,15 @@ using UnityEngine;
 public class DeletDrops : MonoBehaviour {
 	GenerateCube gc;
 	AddDrops ad;
+	ScoreScript ss;
 	public List<GameObject> column = new List<GameObject>();
+	public int chain = 1;
 
 	// Use this for initialization
 	void Start () {
 		gc = GetComponent<GenerateCube>();
 		ad = GetComponent<AddDrops>();
+		ss = GetComponent<ScoreScript>();
 	}
 	
 	// Update is called once per frame
@@ -20,7 +23,7 @@ public class DeletDrops : MonoBehaviour {
 
 	//列を消す
 	public void deleteColumn(int i){
-		int chain = 1;
+		//int chain = 1;
 		for (int j = 1; j < gc.cube [i].Count; j++) {
 			if (gc.cube [i] [j].tag.Equals (gc.cube [i] [j - 1].tag) && j != gc.cube[i].Count-1) {
 				chain += 1;
@@ -32,6 +35,7 @@ public class DeletDrops : MonoBehaviour {
 						gc.cube [i].RemoveAt (j - k);
 						//ad.generateAddDrops ();
 					}
+					ss.countScore (chain);
 				}
 				chain = 1;
 			} else {
@@ -41,6 +45,7 @@ public class DeletDrops : MonoBehaviour {
 						gc.cube [i].RemoveAt (j - k);
 						//ad.generateAddDrops ();
 					}
+					ss.countScore (chain);
 				}
 				chain = 1;
 			}		
@@ -50,7 +55,7 @@ public class DeletDrops : MonoBehaviour {
 	//行を消す
 	public void deleteRow(int j){
 		Debug.Log (j);
-		int chain = 1;
+		//int chain = 1;
 		for (int i = 1; i < 10; i++) {
 			if (gc.cube[i].Count > j && gc.cube[i-1].Count > j) {
 				if (gc.cube [i] [j].tag.Equals (gc.cube [i - 1] [j].tag) && i != 9) {
@@ -65,6 +70,7 @@ public class DeletDrops : MonoBehaviour {
 							Debug.Log ("delete!");
 							deleteRow(j);
 						}
+						ss.countScore (chain);
 					}
 					chain = 1;
 				} else {
@@ -76,6 +82,7 @@ public class DeletDrops : MonoBehaviour {
 							Debug.Log ("delete!");
 							deleteRow(j);
 						}
+						ss.countScore (chain);
 					}
 					chain = 1;
 				}
@@ -88,6 +95,7 @@ public class DeletDrops : MonoBehaviour {
 						Debug.Log ("delete!");
 						deleteRow(j);
 					}
+					ss.countScore (chain);
 				}
 				chain = 1;
 			}
