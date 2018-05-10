@@ -3,30 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreBar : MonoBehaviour {
-	LineRenderer scoreBar;
 	GameObject gameManager;
 	ScoreScript ss;
-	Vector3 point;
+	Vector2 sd;
+	Vector2 v;
 	//スコアにかける重み
-	float weight = 0.001f;
+	float weight = 1.0f;
 
 	// Use this for initialization
 	void Start () {
 		gameManager = GameObject.Find ("GameManager");
 		ss = gameManager.GetComponent<ScoreScript>();
-		scoreBar = GameObject.Find("Score").GetComponent<LineRenderer>();
-		point = new Vector3(-6.0f, 3.2f, 0);
+		sd = GetComponent<RectTransform>().sizeDelta;
+		v = GetComponent<RectTransform> ().anchoredPosition;
+
+		GetComponent<RectTransform>().sizeDelta = sd;
+		v.x = 1 * sd.x / 2 - 87;
+		GetComponent<RectTransform> ().anchoredPosition = v;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		float tmp = -6.0f - ss.score * weight;
-		if (-11.3f <= tmp) {
-			point.x = -6.0f - ss.score * weight;
+		sd.x = ss.score * weight;
+		v.x = 1 * sd.x / 2 - 87;
+
+		if (sd.x <= 174) {
+			GetComponent<RectTransform> ().sizeDelta = sd;
+			GetComponent<RectTransform> ().anchoredPosition = v;
 		} else {
-			point.x = -11.3f;
+			sd.x = 174;
+			v.x = 0;
+			GetComponent<RectTransform> ().sizeDelta = sd;
+			GetComponent<RectTransform> ().anchoredPosition = v;
 		}
-		//-6 ~ -11.3
-		scoreBar.SetPosition(1, point);
 	}
 }
