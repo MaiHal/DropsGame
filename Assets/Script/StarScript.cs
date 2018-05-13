@@ -11,8 +11,8 @@ public class StarScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		star = transform.FindChild ("Star").gameObject;
-		lightingStar = transform.FindChild ("LightingStar").gameObject;
+		star = transform.Find ("Star").gameObject;
+		lightingStar = transform.Find ("LightingStar").gameObject;
 		bar = GameObject.Find ("ScoreImage");
 
 		star.SetActive (true);
