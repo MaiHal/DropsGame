@@ -5,12 +5,17 @@ using UnityEngine;
 public class ChangeCube : MonoBehaviour {
 	public bool order = false;
 	public GameObject[] selectObj = new GameObject[2];
-	DeletDrops dd;
 	GenerateCube gc;
+	bool flag = false;
+	int i;
+	int j;
+	int k;
+	int l;
+	//int tmpI;
+	//int tmpJ;
 
 	// Use this for initialization
 	void Start () {
-		dd = GetComponent<DeletDrops>();
 		gc = GetComponent<GenerateCube>();
 	}
 	
@@ -44,7 +49,7 @@ public class ChangeCube : MonoBehaviour {
 					if (clickObj.tag != selectObj [0].tag) {
 						selectObj [1] = clickObj;
 						order = false;
-						changePosition ();
+						changePosition (selectObj);
 					}
 				}
 			}
@@ -55,24 +60,39 @@ public class ChangeCube : MonoBehaviour {
 		}
 	}
 
-	public void changePosition(){
-		//リスト入れ替え
-		int i = (int)(4.5f - selectObj[0].transform.position.x);
-		int j = (int)Mathf.Round(4.5f + selectObj [0].transform.position.y);
-		int k = (int)(4.5f - selectObj[1].transform.position.x);
-		int l = (int)Mathf.Round(4.5f + selectObj [1].transform.position.y);
+	public void changePosition(GameObject[] obj){
+		//クリックしたオブジェクトの添字を計算
+		i = (int)(4.5f - obj[0].transform.position.x);
+		j = (int)Mathf.Round(4.5f + obj [0].transform.position.y);
+		k = (int)(4.5f - obj[1].transform.position.x);
+		l = (int)Mathf.Round(4.5f + obj [1].transform.position.y);
+
+		//GameObject(中身)の座標を交換
+		Vector3 tmpPos = selectObj[0].transform.position;
+		obj[0].transform.position = selectObj[1].transform.position;
+		obj[1].transform.position = tmpPos;
+
+		//リストの中身を交換
 		GameObject tmpDrop = gc.cube[i][j];
 		gc.cube [i] [j] = gc.cube [k] [l];
 		gc.cube [k] [l] = tmpDrop;
 
-		//オブジェクトの座標入れ替え
-		Vector3 tmpPos = selectObj[0].transform.position;
-		selectObj[0].transform.position = selectObj[1].transform.position;
-		selectObj [1].transform.position = tmpPos;
+		Invoke("waitChangeDrops", 0.2f);
+	}
 
-		dd.deleteColumn(i);
-		dd.deleteColumn(k);
-		dd.deleteRow(j);
-		dd.deleteRow(l);
+	public void waitChangeDrops(){
+		//交換によって削除する
+		flag = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (i, j);
+		if (i == k && flag == true && l > j) {
+			l = l - 3;
+			Invoke ("waitAddDrops", 0.2f);
+		} else {
+			Invoke ("waitAddDrops", 0.2f);
+		}
+	
+	}
+
+	public void waitAddDrops(){
+		this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (k, l);
 	}
 }

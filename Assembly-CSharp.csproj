@@ -54,10 +54,12 @@
      <Compile Include="Assets\Script\AddDrops.cs" />
      <Compile Include="Assets\Script\ChangeCube.cs" />
      <Compile Include="Assets\Script\DeletDrops.cs" />
+     <Compile Include="Assets\Script\DeleteByChange.cs" />
      <Compile Include="Assets\Script\GenerateCube.cs" />
      <Compile Include="Assets\Script\ScoreBar.cs" />
      <Compile Include="Assets\Script\ScoreScript.cs" />
      <Compile Include="Assets\Script\StarScript.cs" />
+     <Compile Include="Assets\Script\TestDelete.cs" />
  <Reference Include="UnityEngine.UIAutomation">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
  </Reference>

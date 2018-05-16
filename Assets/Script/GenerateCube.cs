@@ -35,12 +35,17 @@ public class GenerateCube : MonoBehaviour {
 		cube[8] = lineI;
 		cube[9] = lineJ;
 
+		blue.SetActive (true);
+	    red.SetActive (true);
+		yellow.SetActive (true);
+		green.SetActive (true);
+
 		//ゲーム開始時のブロックを生成
 		for(int i = 0; i < 10; i++){
 			for(int j = 0; j < 10; j++){
 				int r = selectColor(i, j);
-				strageDrops (r, i);
-				cube[i][j] = Instantiate (cube[i][j], new Vector3( 4.5f - i * 1.0f, 0 + j * 1.0f, 0),  Quaternion.identity) as GameObject;
+				strageDrops (r, i, j, -4.5f);
+				//cube[i][j] = Instantiate (cube[i][j], new Vector3( 4.5f - i * 1.0f, -4.5f + j * 1.0f, 0),  Quaternion.identity) as GameObject;
 			}	
 		}
 	}
@@ -70,19 +75,19 @@ public class GenerateCube : MonoBehaviour {
 		return r;
 	}
 
-	public void strageDrops(int r, int i){
+	public void strageDrops(int r, int i, int j, float basic){
 		switch(r){
 			case 0:
-				cube[i].Add(blue);
+			    cube[i].Add(Instantiate (blue, new Vector3( 4.5f - i * 1.0f, basic + j * 1.0f, 0),  Quaternion.identity) as GameObject);
 				break;
 			case 1:
-				cube[i].Add(red);
+				cube[i].Add(Instantiate (red, new Vector3( 4.5f - i * 1.0f, basic + j * 1.0f, 0),  Quaternion.identity) as GameObject);
 				break;
 			case 2:
-				cube[i].Add(yellow);
+			    cube[i].Add(Instantiate (yellow, new Vector3( 4.5f - i * 1.0f, basic + j * 1.0f, 0),  Quaternion.identity) as GameObject);
 				break;
 			case 3:
-				cube[i].Add(green);
+				cube[i].Add(Instantiate (green, new Vector3( 4.5f - i * 1.0f, basic + j * 1.0f, 0),  Quaternion.identity) as GameObject);
 				break;
 		}
 	}

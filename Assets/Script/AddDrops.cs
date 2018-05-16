@@ -17,10 +17,10 @@ public class AddDrops : MonoBehaviour {
 	public void generateAddDrops(){
 		int r;
 		for(int i = 0; i < 10; i++){
-			for(int j = 0; j < 10 - (gc.cube[i].Count); j++){
+			int lost = gc.cube [i].Count;
+			for(int j = 0; j < 10 - lost; j++){
 				r = UnityEngine.Random.Range(0, 4);
-				gc.strageDrops(r, i);
-				gc.cube[i][j] = Instantiate (gc.cube[i][j], new Vector3( 4.5f - i * 1.0f, 7.5f + j * 1.0f, 0),  Quaternion.identity) as GameObject;
+				gc.strageDrops(r, i, j, 7.5f);
 			}
 		}
 	}

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DeletDrops : MonoBehaviour {
 	GenerateCube gc;
-	AddDrops ad;
 	ScoreScript ss;
 	public List<GameObject> column = new List<GameObject>();
 	public int chain = 1;
@@ -12,7 +11,6 @@ public class DeletDrops : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gc = GetComponent<GenerateCube>();
-		ad = GetComponent<AddDrops>();
 		ss = GetComponent<ScoreScript>();
 	}
 	
@@ -53,7 +51,7 @@ public class DeletDrops : MonoBehaviour {
 	}
 
 	//行を消す
-	public void deleteRow(int j){
+	/*public void deleteRow(int j){
 		Debug.Log (j);
 		//int chain = 1;
 		for (int i = 1; i < 10; i++) {
@@ -100,5 +98,5 @@ public class DeletDrops : MonoBehaviour {
 				chain = 1;
 			}
 		}
-	}
+	}*/
 }
