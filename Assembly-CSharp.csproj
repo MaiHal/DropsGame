@@ -53,7 +53,6 @@
   <ItemGroup>
      <Compile Include="Assets\Script\AddDrops.cs" />
      <Compile Include="Assets\Script\ChangeCube.cs" />
-     <Compile Include="Assets\Script\DeleteByAdd.cs" />
      <Compile Include="Assets\Script\DeleteByChange.cs" />
      <Compile Include="Assets\Script\GenerateCube.cs" />
      <Compile Include="Assets\Script\ScoreBar.cs" />

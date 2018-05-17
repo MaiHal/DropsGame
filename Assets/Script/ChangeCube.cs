@@ -11,8 +11,6 @@ public class ChangeCube : MonoBehaviour {
 	int j;
 	int k;
 	int l;
-	//int tmpI;
-	//int tmpJ;
 
 	// Use this for initialization
 	void Start () {
@@ -77,12 +75,13 @@ public class ChangeCube : MonoBehaviour {
 		gc.cube [i] [j] = gc.cube [k] [l];
 		gc.cube [k] [l] = tmpDrop;
 
+		flag = false;
 		Invoke("waitChangeDrops", 0.2f);
 	}
 
 	public void waitChangeDrops(){
 		//交換によって削除する
-		flag = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (i, j);
+		flag = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (i, j, flag);
 		if (i == k && flag == true && l > j) {
 			l = l - 3;
 			Invoke ("waitAddDrops", 0.2f);
@@ -93,6 +92,6 @@ public class ChangeCube : MonoBehaviour {
 	}
 
 	public void waitAddDrops(){
-		this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (k, l);
+		this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (k, l, flag);
 	}
 }
