@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class DeleteByChange : MonoBehaviour {
 	GenerateCube gc;
+	ScoreScript sc;
 
 	// Use this for initialization
 	void Start () {
 		gc = GetComponent<GenerateCube>();
+		sc = GetComponent<ScoreScript> ();
 	}
 
 	// Update is called once per frame
@@ -59,5 +61,6 @@ public class DeleteByChange : MonoBehaviour {
 			gc.cube [i][beginDrop+colChain-1-j].SetActive(false);
 			gc.cube [i].RemoveAt(beginDrop + colChain-1 - j);
 		}
+		sc.countScore (colChain);
 	}
 }
