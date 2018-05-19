@@ -52,20 +52,23 @@ public class DeleteByAdd : MonoBehaviour {
 		upChain = colChain;
 
 		if (lost >= 4 && upChain == 1) {
-			upChain = checkColor (i, j + 1, upChain, 1, lost-1);
+			upChain = checkColor (i, j + 1, upChain, 1, lost - 1);
 			upBeginDrop = j + 1;
+		} else {
+			upChain = 1;
 		}
 
 		if (lost == 5 && upChain == 1) {
 			upChain = checkColor (i, j + 2, upChain, 1, lost - 2);
 			upBeginDrop = j + 2;
+		} else {
+			upChain = 1;
 		}
 
 
 
 		//自分の下2つのドロップを探索
 		if (j - 1 >= 0) {
-			Debug.Log ("a");
 			if (gc.cube [i] [j].tag == gc.cube [i] [j - 1].tag) {
 				colChain += 1;
 				beginDrop = j - 1;
@@ -80,12 +83,13 @@ public class DeleteByAdd : MonoBehaviour {
 
 		//チェーンデータをもとにdelete
 		if (colChain >= 3) {
+			Debug.Log ("colによる削除");
 			deleteColumnChain (i, colChain, beginDrop);
 			flag = true;
 		} 
 
-		Debug.Log (upChain);
 		if (upChain >= 3) {
+			Debug.Log ("upによる削除");
 			deleteColumnChain (i, upChain, upBeginDrop);
 		}
 	}

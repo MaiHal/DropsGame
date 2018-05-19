@@ -80,6 +80,7 @@
 -define:UNITY_2017
 -define:PLATFORM_ARCH_64
 -define:UNITY_64
+-define:UNITY_ANALYTICS
 -define:ENABLE_AUDIO
 -define:ENABLE_CACHING
 -define:ENABLE_CLOTH
@@ -167,12 +168,14 @@
 -define:UNITY_TEAM_LICENSE
 'Assets/Script/AddDrops.cs'
 'Assets/Script/ChangeCube.cs'
+'Assets/Script/DeletDrops.cs'
 'Assets/Script/DeleteByAdd.cs'
 'Assets/Script/DeleteByChange.cs'
 'Assets/Script/GenerateCube.cs'
 'Assets/Script/ScoreBar.cs'
 'Assets/Script/ScoreScript.cs'
 'Assets/Script/StarScript.cs'
+'Assets/Script/TestDelete.cs'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Xml.Linq.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/UnityScript.dll'
