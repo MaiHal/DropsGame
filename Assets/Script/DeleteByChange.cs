@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class DeleteByChange : MonoBehaviour {
 	GenerateCube gc;
+	ScoreScript sc;
+	AddDrops ad;
 
 	// Use this for initialization
 	void Start () {
 		gc = GetComponent<GenerateCube>();
+		sc = GetComponent<ScoreScript> ();
+		ad = GetComponent<AddDrops> ();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
-	public bool countColumnChain(int i, int j){
+	public bool countColumnChain(int i, int j, bool flag){
 		int colChain = 1;
 		int beginDrop = j;
 
@@ -47,17 +51,19 @@ public class DeleteByChange : MonoBehaviour {
 
 		//チェーンデータをもとにdelete
 		if (colChain >= 3) {
-			deleteColumnChain (i, colChain, beginDrop);
+			deleteColumnChain (i, colChain, beginDrop, flag);
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public void deleteColumnChain(int i, int colChain, int beginDrop){
+	public void deleteColumnChain(int i, int colChain, int beginDrop, bool flag){
 		for(int j = 0; j < colChain; j++){
 			gc.cube [i][beginDrop+colChain-1-j].SetActive(false);
 			gc.cube [i].RemoveAt(beginDrop + colChain-1 - j);
 		}
+		ad.generateAddDrops (i, flag);
+		sc.countScore (colChain);
 	}
 }

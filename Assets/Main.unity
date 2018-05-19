@@ -1133,10 +1133,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1466427240}
   - component: {fileID: 1466427239}
-  - component: {fileID: 1466427238}
   - component: {fileID: 1466427237}
   - component: {fileID: 1466427241}
   - component: {fileID: 1466427242}
+  - component: {fileID: 1466427238}
+  - component: {fileID: 1466427243}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1177,11 +1178,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1466427236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c13afb9589974e62b3ca938a39ad559, type: 3}
+  m_Script: {fileID: 11500000, guid: 5744a7e0cb045452f813326d3055f3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  column: []
-  chain: 1
 --- !u!114 &1466427239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1234,6 +1233,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 249330861}
   score: 0
+--- !u!114 &1466427243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1466427236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a12bced98f0b54ebaadbaf121962ae13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1534000828
 GameObject:
   m_ObjectHideFlags: 0

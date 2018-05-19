@@ -11,14 +11,12 @@ public class ChangeCube : MonoBehaviour {
 	int j;
 	int k;
 	int l;
-	//int tmpI;
-	//int tmpJ;
 
 	// Use this for initialization
 	void Start () {
 		gc = GetComponent<GenerateCube>();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		getClickObject ();
@@ -40,11 +38,11 @@ public class ChangeCube : MonoBehaviour {
 		if (order) {
 			//2つめの選択(1つめのドロップの前後左右かどうか)
 			if ((clickObj.transform.position.x != selectObj[0].transform.position.x) ||
-			    (clickObj.transform.position.y != selectObj[0].transform.position.y)) {
+				(clickObj.transform.position.y != selectObj[0].transform.position.y)) {
 				if (((clickObj.transform.position.x == selectObj [0].transform.position.x) &&
-				    (Mathf.Abs (clickObj.transform.position.y - selectObj [0].transform.position.y)) < 1.1f) ||
+					(Mathf.Abs (clickObj.transform.position.y - selectObj [0].transform.position.y)) < 1.1f) ||
 					((Mathf.Abs (clickObj.transform.position.y - selectObj [0].transform.position.y) < 0.2f) &&
-				    (Mathf.Abs (clickObj.transform.position.x - selectObj [0].transform.position.x) < 1.1f))) {
+						(Mathf.Abs (clickObj.transform.position.x - selectObj [0].transform.position.x) < 1.1f))) {
 					//1つめと同じ色でないか
 					if (clickObj.tag != selectObj [0].tag) {
 						selectObj [1] = clickObj;
@@ -77,22 +75,23 @@ public class ChangeCube : MonoBehaviour {
 		gc.cube [i] [j] = gc.cube [k] [l];
 		gc.cube [k] [l] = tmpDrop;
 
+		flag = false;
 		Invoke("waitChangeDrops", 0.2f);
 	}
 
 	public void waitChangeDrops(){
 		//交換によって削除する
-		flag = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (i, j);
+		flag = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (i, j, flag);
 		if (i == k && flag == true && l > j) {
 			l = l - 3;
 			Invoke ("waitAddDrops", 0.2f);
 		} else {
 			Invoke ("waitAddDrops", 0.2f);
 		}
-	
+
 	}
 
 	public void waitAddDrops(){
-		this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (k, l);
+		this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (k, l, flag);
 	}
 }
