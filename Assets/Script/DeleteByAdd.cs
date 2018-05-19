@@ -83,13 +83,11 @@ public class DeleteByAdd : MonoBehaviour {
 
 		//チェーンデータをもとにdelete
 		if (colChain >= 3) {
-			Debug.Log ("colによる削除");
 			deleteColumnChain (i, colChain, beginDrop);
 			flag = true;
 		} 
 
 		if (upChain >= 3) {
-			Debug.Log ("upによる削除");
 			deleteColumnChain (i, upChain, upBeginDrop);
 		}
 	}
