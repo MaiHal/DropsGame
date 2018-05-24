@@ -176,6 +176,7 @@
 'Assets/Script/ScoreScript.cs'
 'Assets/Script/StarScript.cs'
 'Assets/Script/TestDelete.cs'
+'Assets/Script/TitleToPlay.cs'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Xml.Linq.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/UnityScript.dll'
