@@ -24,16 +24,16 @@ public class AddDrops : MonoBehaviour {
 		float initPos;
 
 		if (flag == true) {
-			initPos = 12.5f;
+			initPos = 17.5f;
 		} else {
-			initPos = 7.5f;
+			initPos = 12.5f;
 		}
-		for(int j = 0; j < 10 - rest; j++){
+		for(int j = 0; j < 16 - rest; j++){
 			r = UnityEngine.Random.Range(0, 4);
 			gc.strageDrops(r, i, j, initPos);
 		}
 		k = i;
-		l = rest;
+		l = rest-6;
 		Invoke ("waitLanding", 2.0f);
 	}
 

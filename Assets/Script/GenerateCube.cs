@@ -42,7 +42,7 @@ public class GenerateCube : MonoBehaviour {
 
 		//ゲーム開始時のブロックを生成
 		for(int i = 0; i < 10; i++){
-			for(int j = 0; j < 10; j++){
+			for(int j = 0; j < 16; j++){
 				int r = selectColor(i, j);
 				strageDrops (r, i, j, -4.5f);
 				//cube[i][j] = Instantiate (cube[i][j], new Vector3( 4.5f - i * 1.0f, -4.5f + j * 1.0f, 0),  Quaternion.identity) as GameObject;
