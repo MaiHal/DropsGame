@@ -26,7 +26,7 @@ public class DeleteByDelete : MonoBehaviour {
 		int beginDrop = j;
 
 		//自分の上1つのドロップを探索
-		if (j +1 <= 9) {
+		if (j +1 <= 7) {
 			if (gc.cube [i] [j].tag == gc.cube [i] [j + 1].tag) {
 				colChain += 1;
 			}
