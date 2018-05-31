@@ -6,12 +6,16 @@ public class DeleteByChange : MonoBehaviour {
 	GenerateCube gc;
 	ScoreScript sc;
 	AddDrops ad;
+	DeleteByDelete dbd;
+	int k;
+	int l;
 
 	// Use this for initialization
 	void Start () {
 		gc = GetComponent<GenerateCube>();
 		sc = GetComponent<ScoreScript> ();
 		ad = GetComponent<AddDrops> ();
+		dbd = GetComponent<DeleteByDelete> ();
 	}
 
 	// Update is called once per frame
@@ -65,5 +69,12 @@ public class DeleteByChange : MonoBehaviour {
 		}
 		ad.generateAddDrops (i, flag);
 		sc.countScore (colChain);
+		k = i;
+		l = beginDrop;
+		Invoke ("waitFallingDrops", 2.0f);
+	}
+
+	public void waitFallingDrops(){
+		dbd.countColumnChain(k,l);
 	}
 }
