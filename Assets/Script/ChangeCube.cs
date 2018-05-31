@@ -6,7 +6,7 @@ public class ChangeCube : MonoBehaviour {
 	public bool order = false;
 	public GameObject[] selectObj = new GameObject[2];
 	GenerateCube gc;
-	bool flag = false;
+	DeleteManegement dm;
 	int i;
 	int j;
 	int k;
@@ -15,6 +15,7 @@ public class ChangeCube : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gc = GetComponent<GenerateCube>();
+		dm = GetComponent<DeleteManegement>();
 	}
 
 	// Update is called once per frame
@@ -75,23 +76,10 @@ public class ChangeCube : MonoBehaviour {
 		gc.cube [i] [j] = gc.cube [k] [l];
 		gc.cube [k] [l] = tmpDrop;
 
-		flag = false;
-		Invoke("waitChangeDrops", 0.2f);
-	}
-
-	public void waitChangeDrops(){
-		//交換によって削除する
-		flag = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (i, j, flag);
-		if (i == k && flag == true && l > j) {
-			l = l - 3;
-			Invoke ("waitAddDrops", 0.2f);
-		} else {
-			Invoke ("waitAddDrops", 0.2f);
-		}
-
-	}
-
-	public void waitAddDrops(){
-		this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (k, l, flag);
+		dm.i = i;
+		dm.j = j;
+		dm.k = k;
+		dm.l = l;
+		this.gameObject.GetComponent<DeleteManegement>().deleteManagement("Change");
 	}
 }
