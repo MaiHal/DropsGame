@@ -80,6 +80,18 @@ public class DeleteByAdd : MonoBehaviour {
 					if (gc.cube [i] [j].tag == gc.cube [i] [j - 2].tag) {
 						colChain += 1;
 						beginDrop = j - 2;
+						if (j - 3 >= 0) {
+							if (gc.cube [i] [j].tag == gc.cube [i] [j - 3].tag) {
+								colChain += 1;
+								beginDrop = j - 3;
+								if (j - 4 >= 0) {
+									if (gc.cube [i] [j].tag == gc.cube [i] [j - 4].tag) {
+										colChain += 1;
+										beginDrop = j - 4;
+									}
+								}
+							}
+						}
 					}
 				}
 			}

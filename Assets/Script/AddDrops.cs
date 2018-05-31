@@ -34,7 +34,7 @@ public class AddDrops : MonoBehaviour {
 		}
 		k = i;
 		l = rest-6;
-		Invoke ("waitLanding", 2.0f);
+		Invoke ("waitLanding", 3.0f);
 	}
 
 	public void waitLanding(){
