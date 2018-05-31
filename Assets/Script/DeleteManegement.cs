@@ -31,28 +31,38 @@ public class DeleteManegement : MonoBehaviour {
 
 	public void change(){
 		if (i == k) {
-			//行チェック
-			rowFlag [0] = this.gameObject.GetComponent<DeleteByChange> ().countRowChain (i, j, 2, 2, false);
-			rowFlag [1] = this.gameObject.GetComponent<DeleteByChange> ().countRowChain (k, l, 2, 2, rowFlag [0]);
-
-			//列チェック 上半分と下半分
+			
 			if (j > l) {
+				//行チェック
+				rowFlag [0] = this.gameObject.GetComponent<DeleteByChange> ().countRowChain (i, j, 2, 2, false);
+				rowFlag [1] = this.gameObject.GetComponent<DeleteByChange> ().countRowChain (k, l, 2, 2, rowFlag [0]);
+
+				//列チェック　上半分と下半分
 				columnFlag [0] = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (i, j, 2, 0, false);
 				columnFlag [1] = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (k, l, 0, 2, columnFlag [0]);
 			} else {
-				columnFlag [0] = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (i, j, 0, 2, false);
-				columnFlag [1] = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (k, l, 2, 0, columnFlag [0]);
+				rowFlag [0] = this.gameObject.GetComponent<DeleteByChange> ().countRowChain (k, l, 2, 2, false);
+				rowFlag [1] = this.gameObject.GetComponent<DeleteByChange> ().countRowChain (i, j, 2, 2, rowFlag [0]);
+
+				columnFlag [0] = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (k, l, 2, 0, false);
+				columnFlag [1] = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (i, j, 0, 2, columnFlag [0]);
 			}
 		} else {
 			//列チェック
 			columnFlag [0] = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (i, j, 2, 2, false);
 			columnFlag [1] = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (k, l, 2, 2, columnFlag [0]);
 
-			//行チェック 右半分と左半分
 			if (k > i) {
-				rowFlag [0] = this.gameObject.GetComponent<DeleteByChange> ().countRowChain (i, j, 0, 2, false);
-				rowFlag [1] = this.gameObject.GetComponent<DeleteByChange> ().countRowChain (k, l, 2, 0, columnFlag [0]);
+				columnFlag [0] = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (k, l, 2, 2, false);
+				columnFlag [1] = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (i, j, 2, 2, columnFlag [0]);
+
+				//行チェック 右半分と左半分
+				rowFlag [0] = this.gameObject.GetComponent<DeleteByChange> ().countRowChain (k, l, 2, 0, false);
+				rowFlag [1] = this.gameObject.GetComponent<DeleteByChange> ().countRowChain (i, j, 0, 2, columnFlag [0]);
 			} else {
+				columnFlag [0] = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (i, j, 2, 2, false);
+				columnFlag [1] = this.gameObject.GetComponent<DeleteByChange> ().countColumnChain (k, l, 2, 2, columnFlag [0]);
+
 				rowFlag [0] = this.gameObject.GetComponent<DeleteByChange> ().countRowChain (i, j, 2, 0, false);
 				rowFlag [1] = this.gameObject.GetComponent<DeleteByChange> ().countRowChain (k, l, 0, 2, columnFlag [0]);
 			}
@@ -63,6 +73,6 @@ public class DeleteManegement : MonoBehaviour {
 		} else {
 			deleteFlag = true;
 		}
-		//Debug.Log ("行"+rowFlag[0]+","+rowFlag[1]+" :列"+columnFlag[0]+","+columnFlag[1]);
+		Debug.Log ("行"+rowFlag[0]+","+rowFlag[1]+" :列"+columnFlag[0]+","+columnFlag[1]);
 	}
 }
