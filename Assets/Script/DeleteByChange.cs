@@ -77,27 +77,35 @@ public class DeleteByChange : MonoBehaviour {
 				//add時の調整もして
 				//行delete
 				if (rowFlag [0]) {
-					deleteRowChain (System.Math.Max(j, l), rowChain [0], rowBeginDrop [0], flag);
+					expandDeleteRowChain (System.Math.Max(j, l), rowChain [0], rowBeginDrop [0], i, flag);
 				}
 				//行delete
 				if (rowFlag [1]) {
-					deleteRowChain (System.Math.Min(j, l), rowChain [1], rowBeginDrop [1], flag);
+					deleteRowChain (System.Math.Min (j, l), rowChain [1], rowBeginDrop [1], flag);
 				}
 			} else {
+
+				//要調整
 				//add時の調整もして
 				//行delete
-				if (rowFlag [0]) {
-					deleteRowChain (System.Math.Max(j, l), rowChain [0], rowBeginDrop [0], flag);
-				}
-				//行delete
-				if (rowFlag [1]) {
-					deleteRowChain (System.Math.Min(j, l), rowChain [1], rowBeginDrop [1], flag);
-					if (columnFlag [1]) {
-						deleteColumnChain (i, colChain [1] - 1, colBeginDrop [1], flag);
+				if (columnFlag [1]) {
+					if (rowFlag [0]) {
+						expandDeleteRowChain (System.Math.Max (j, l), rowChain [0], rowBeginDrop [0], i, flag);
+						deleteColumnChain (i, colChain [1] + 1, colBeginDrop [1], flag);
+					} else {
+						deleteColumnChain (i, colChain [1], colBeginDrop [1], flag);
+					}
+					//行delete
+					if (rowFlag [1]) {
+						expandDeleteRowChain (System.Math.Min (j, l), rowChain [1], rowBeginDrop [1], i, flag);
 					}
 				} else {
-					if (columnFlag [1]) {
-						deleteColumnChain (i, colChain [1], colBeginDrop [1], flag);
+					//行delete
+					if (rowFlag [0]) {
+						deleteRowChain (System.Math.Max (j, l), rowChain [0], rowBeginDrop [0], flag);
+					}
+					if (rowFlag [1]) {
+						deleteRowChain (System.Math.Min (j, l), rowChain [1], rowBeginDrop [1], flag);
 					}
 				}
 			}
@@ -276,6 +284,18 @@ public class DeleteByChange : MonoBehaviour {
 			gc.cube [beginDrop+rowChain-1-i][j].SetActive(false);
 			gc.cube [beginDrop+rowChain-1-i].RemoveAt(j);
 			//ad.generateAddDrops (beginDrop+rowChain-1-i, flag);
+		}
+		sc.countScore (rowChain);
+	}
+
+	//拡張付き
+	public void expandDeleteRowChain(int j, int rowChain, int beginDrop, int remove, bool flag){
+		for(int i = 0; i < rowChain; i++){
+			if(beginDrop+rowChain-1-i != remove){
+				gc.cube [beginDrop+rowChain-1-i][j].SetActive(false);
+				gc.cube [beginDrop+rowChain-1-i].RemoveAt(j);
+				//ad.generateAddDrops (beginDrop+rowChain-1-i, flag);
+			}
 		}
 		sc.countScore (rowChain);
 	}
