@@ -57,7 +57,6 @@
      <Compile Include="Assets\Script\DeleteByAdd.cs" />
      <Compile Include="Assets\Script\DeleteByChange.cs" />
      <Compile Include="Assets\Script\DeleteByDelete.cs" />
-     <Compile Include="Assets\Script\DeleteManegement.cs" />
      <Compile Include="Assets\Script\GenerateCube.cs" />
      <Compile Include="Assets\Script\ScoreBar.cs" />
      <Compile Include="Assets\Script\ScoreScript.cs" />

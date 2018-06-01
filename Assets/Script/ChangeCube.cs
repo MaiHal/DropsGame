@@ -6,7 +6,7 @@ public class ChangeCube : MonoBehaviour {
 	public bool order = false;
 	public GameObject[] selectObj = new GameObject[2];
 	GenerateCube gc;
-	DeleteManegement dm;
+	DeleteByChange dbc;
 	int i;
 	int j;
 	int k;
@@ -15,7 +15,7 @@ public class ChangeCube : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gc = GetComponent<GenerateCube>();
-		dm = GetComponent<DeleteManegement>();
+		dbc = GetComponent<DeleteByChange>();
 	}
 
 	// Update is called once per frame
@@ -76,10 +76,10 @@ public class ChangeCube : MonoBehaviour {
 		gc.cube [i] [j] = gc.cube [k] [l];
 		gc.cube [k] [l] = tmpDrop;
 
-		dm.i = i;
-		dm.j = j;
-		dm.k = k;
-		dm.l = l;
-		this.gameObject.GetComponent<DeleteManegement>().deleteManagement("Change");
+		dbc.i = i;
+		dbc.j = j;
+		dbc.k = k;
+		dbc.l = l;
+		this.gameObject.GetComponent<DeleteByChange>().deleteManagement("Change");
 	}
 }
